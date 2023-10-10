@@ -1,0 +1,31 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background-color: var(--green);
+    color: var(--peach);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 90px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.title 
+{
+    font-size: 36px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.buttons button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    background: none;
+    color: var(--peach);
+    font-size: 22px;
+    font-family: 'Calibri', sans-serif;
+}
