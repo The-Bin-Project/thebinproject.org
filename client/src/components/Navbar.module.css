@@ -2,30 +2,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
-    background-color: var(--green);
-    color: var(--peach);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 90px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.title 
-{
-    font-size: 36px;
-    font-family: 'Bebas Neue', sans-serif;
-}
-
-.buttons button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 10px;
-    background: none;
-    color: var(--peach);
-    font-size: 22px;
-    font-family: 'Calibri', sans-serif;
-}
+    background-color: #fffcfc;
+    padding: 1em;
+  }
+  
+  .navbarLeft,
+  .navbarRight {
+    display: flex;
+  }
+  
+  .navbarLeft a {
+    font-size: 30px; /* Increase font size */
+    margin-right: 20px; /* Space between "Project Bin" and the right side elements */
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s;
+    font-family: "Lato";
+  }
+  
+  .navbarRight a,
+  .navbarLeft a {
+    margin: 0 4px; /* Reduced space between the links */
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s;
+    margin-left:30px;
+    font-family: "Lato";
+  }
+  
+  .navbarRight a:hover,
+  .navbarLeft a:hover {
+    color: rgb(2, 108, 41);
+  }
+  

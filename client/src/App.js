@@ -1,14 +1,22 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import LandingPage from "./pages/LandingPage";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Landing from './pages/LandingPage.js';
+import Idea from './pages/Idea.js';
+import About from './pages/About.js';
+import './App.css';
 
 function App() {
-    return (
-        <div>
-            <Navbar />
-            <LandingPage />
-        </div>
-    );
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/idea" element={<Idea />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

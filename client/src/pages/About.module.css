@@ -1,0 +1,44 @@
+.hero1 {
+    position: relative;
+    background-image: url("../assets/aboutus.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 70vh;
+    overflow: hidden; /* Ensure the pseudo-element does not overflow */
+  }
+  
+  .hero1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(40, 40, 40, 0.8); /* Black color with 50% opacity. Adjust the 0.5 value to your liking */
+    z-index: 1; /* Ensure the overlay is above the image but below the content */
+  }
+  
+  .container1 {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    position: relative; /* Ensure the content is above the pseudo-element */
+    z-index: 2;
+  }
+  .heading1{
+    font-size: 5vw;
+
+  }
+  .leftCol1 {
+    margin-left: 2em;
+    margin-top: 2em;
+  }
+  
+  .subHead1 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+    color: rgb(4, 4, 4); /* Adjust color based on your image */
+  }
+  

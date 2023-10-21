@@ -1,70 +1,182 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
-
-.coverContainer
-{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    background-image: url('../assets/cover.jpg');
-    background-size: cover;
-    background-position: center;
-    padding-right: 45%;
-    flex-direction: column;
-    justify-content: center;
+/* --- MAIN STYLE ---*/
+:root {
+  --primary-color: rgb(2, 78, 22);
 }
 
-.ideaContainer
-{
-    /* height: 100vh;  */
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--bg);
+body {
+  background: #f5f5f5;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-.ideaContainer h2
-{
-    color: var(--green);
+h1{
+
+  font-size: 50vw;
+  font-family: "Lato";
+  font-weight: 400;
+  margin-bottom: 0.5em;
+  color: #20272e;
+}
+a {
+  color: #fffcfc;
 }
 
-.ideaContainer iframe
-{
-    width: 90%;
-    height: auto; 
-    object-fit: cover;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.ideaContainer p, .ideaContainer ul
-{
-    text-align: left;
-    width: 70%;
+section {
+  padding: 5em 2em;
 }
 
-.progressContainer
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--green);
+.landingpic {
+  position: relative;  /* Add this to position the pseudo-element */
+  background-image: url("../assets/landing.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 70vh;  /* Adjust the height here */
 }
 
-.progressContainer p
-{
-    color: var(--bg);
+/* Add this to blur only the background image */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(10px);  /* Adjust the blur value here */
+  z-index: -1;
 }
 
-.progressContainer video
-{
-    width: 50%; 
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: left;
 }
 
-.reportsContainer
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--green);
+
+/* --- CONTACT STYLE ---*/
+
+h1 {
+  font-size: 5vw;
+  font-style: bold;
 }
+
+label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border-radius: 0.3em;
+  border: 1px solid gray;
+  box-sizing: border-box;
+}
+
+.subHead {
+  font-size: 1.5em;  /* Make the text slightly bigger; adjust as needed */
+  margin-bottom: 0.0002em;  /* Reduce the margin to bring it closer to the title */
+  font-family: "Lato";
+}
+
+.aboutSection {
+  padding: 60px 0;
+  text-align: center; /* center the text */
+}
+
+.aboutTitle {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.aboutSubheading {
+  font-size: 1.2em;
+  color: #777;
+}
+.infoText{
+  font-size: 1.2em;
+  color: #777;
+  text-align: center;
+}
+
+.infoHeading{
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  text-align: center;
+  color: rgb(4, 4, 4);
+}
+
+input[type="submit"] {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.3em;
+  border-radius: 5em;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5em;
+  padding: 0.8em 2em;
+  cursor: pointer;
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+}
+
+nav.menu-btn {
+  display: block;
+}
+
+nav {
+  position: fixed;
+  z-index: 999;
+  width: 66%;
+  right: 0;
+  top: 0;
+  background-color: #20272e;
+  height: 60vh;
+  padding: 1em;
+}
+
+nav ul.primary-nav {
+  margin-top: 4em;
+}
+
+nav li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  text-align: right;
+  transition: font-weight 0.2s;
+}
+
+nav li a:hover {
+  font-weight: bold;
+}
+
+.mobile-menu-exit {
+  display: block;
+  float: right;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
