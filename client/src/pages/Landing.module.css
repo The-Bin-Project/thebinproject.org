@@ -11,7 +11,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-h1{
+h1 {
 
   font-size: 50vw;
   font-family: "Lato";
@@ -19,6 +19,7 @@ h1{
   margin-bottom: 0.5em;
   color: #20272e;
 }
+
 a {
   color: #fffcfc;
 }
@@ -34,12 +35,12 @@ section {
 }
 
 .landingpic {
-  position: relative; 
+  position: relative;
   background-image: url("../assets/landing.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: calc(100vh - 150px); 
+  height: calc(100vh - 150px);
 }
 
 /* Add this to blur only the background image */
@@ -51,7 +52,8 @@ section {
   right: 0;
   bottom: 0;
   background: inherit;
-  filter: blur(10px);  /* Adjust the blur value here */
+  filter: blur(10px);
+  /* Adjust the blur value here */
   z-index: -1;
 }
 
@@ -60,8 +62,8 @@ section {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   text-align: left;
 }
 
@@ -90,14 +92,17 @@ textarea {
 }
 
 .subHead {
-  font-size: 1.5em;  /* Make the text slightly bigger; adjust as needed */
-  margin-bottom: 0.0002em;  /* Reduce the margin to bring it closer to the title */
+  font-size: 1.5em;
+  /* Make the text slightly bigger; adjust as needed */
+  margin-bottom: 0.0002em;
+  /* Reduce the margin to bring it closer to the title */
   font-family: "Lato";
 }
 
 .aboutSection {
   padding: 60px 0;
-  text-align: center; /* center the text */
+  text-align: center;
+  /* center the text */
 }
 
 .aboutTitle {
@@ -109,13 +114,14 @@ textarea {
   font-size: 1.2em;
   color: #777;
 }
-.infoText{
+
+.infoText {
   font-size: 1.2em;
   color: #777;
   text-align: center;
 }
 
-.infoHeading{
+.infoHeading {
   font-size: 3em;
   margin-bottom: 0.5em;
   font-weight: 500;
@@ -180,3 +186,14 @@ nav li a:hover {
   cursor: pointer;
 }
 
+.foodfactsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.foodfactsGrid > * { 
+  width: 80%; 
+  height: 200px; 
+  overflow: hidden; 
+}
