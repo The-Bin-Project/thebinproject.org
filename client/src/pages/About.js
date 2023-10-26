@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import styles from './About.module.css';
 import Testimonials from '../components/Testimonials';
 
 function About() {
   return (
-    <div>
-      <Navbar />
+    <div id="team">
       <section className={styles.hero1}>
       <br></br>
       <br></br>

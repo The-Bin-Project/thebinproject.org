@@ -1,16 +1,13 @@
 import React from 'react';
 import styles from './Idea.module.css';  // Import styles
-import Navbar from '../components/Navbar';
 import videoSrc from '../assets/vidIdea.mp4';  // Adjust the file extension if you converted the video
 import classVideo from '../assets/classification.mp4'
 import binpic1 from '../assets/binpic1.jpg'
 import binpic2 from '../assets/binpic2.jpg'
 
-
 function Idea() {
   return (
-    <div>
-     <Navbar />
+    <div id="idea">
      <section className={styles.hero2}>
       <br></br>
       <br></br>

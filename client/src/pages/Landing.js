@@ -1,14 +1,12 @@
 import React from 'react';
-import styles from './LandingPage.module.css';  // Import styles
-import Navbar from '../components/Navbar';
+import styles from './Landing.module.css';  // Import styles
 import { useEffect, useRef } from 'react';
 import Foodfacts from '../components/Foodfacts';
 function Landing() {
   const infoSectionRef = useRef(null);
 
   return (
-    <div>
-      <Navbar />
+    <div id="pbin">
       <section className={styles.landingpic}>  
         <div className={styles.container}>  
           <div className={styles.leftCol}>  

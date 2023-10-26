@@ -1,37 +1,46 @@
 .navbar {
+	position: fixed;
+	top: 0;
+	z-index: 2;
+	width: calc(100vw - 2em);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fffcfc;
     padding: 1em;
-  }
+}
   
-  .navbarLeft,
-  .navbarRight {
-    display: flex;
-  }
-  
-  .navbarLeft a {
-    font-size: 30px; /* Increase font size */
-    margin-right: 20px; /* Space between "Project Bin" and the right side elements */
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    transition: color 0.3s;
-    font-family: "Lato";
-  }
-  
-  .navbarRight a,
-  .navbarLeft a {
-    margin: 0 4px; /* Reduced space between the links */
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    transition: color 0.3s;
-    margin-left:30px;
-    font-family: "Lato";
-  }
-  
-  .navbarRight a:hover,
-  .navbarLeft a:hover {
-    color: rgb(2, 108, 41);
-  }
-  
+.navbarLeft,
+.navbarRight {
+  display: flex;
+}
+
+.navbarLeft a {
+  font-size: 30px; /* Increase font size */
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s;
+}
+ 
+.navbarLeft a {
+  font-size: 30px; /* Increase font size */
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s;
+  font-family: "Lato";
+}
+
+
+.navbarRight a,
+.navbarLeft a {
+  margin: 0 4px; /* Reduced space between the links */
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s;
+  font-family: "Lato";
+}
+
+.navbarRight a:hover,
+.navbarLeft a:hover {
+  color: rgb(2, 108, 41);
+}
