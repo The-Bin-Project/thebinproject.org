@@ -34,12 +34,12 @@ section {
 }
 
 .landingpic {
-  position: relative;  /* Add this to position the pseudo-element */
+  position: relative; 
   background-image: url("../assets/landing.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 70vh;  /* Adjust the height here */
+  height: calc(100vh - 150px); 
 }
 
 /* Add this to blur only the background image */

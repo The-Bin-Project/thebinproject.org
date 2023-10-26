@@ -3,16 +3,18 @@
 	top: 0;
 	z-index: 2;
 	width: calc(100vw - 2em);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fffcfc;
-    padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fffcfc;
+  padding: 1em;
+  height: 50px;
 }
   
 .navbarLeft,
 .navbarRight {
   display: flex;
+  align-items: center;
 }
 
 .navbarLeft a {
@@ -43,4 +45,34 @@
 .navbarRight a:hover,
 .navbarLeft a:hover {
   color: rgb(2, 108, 41);
+}
+
+.navbarLogo {
+  height: 50px; 
+  margin: 0;
+  margin-right: 8px; 
+}
+
+.navbarRight a::after,
+.navbarLeft a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: rgb(2, 108, 41); 
+  width: 0;
+  transition: width 0.3s;
+  margin-top: 5px; 
+}
+
+.navbarRight a:hover::after,
+.navbarLeft a:hover::after {
+  width: 100%; 
+}
+
+
+.navbarRight a,
+.navbarLeft a {
+  box-sizing: content-box; 
+  padding: 0 4px; 
+  font-size: 20px;
 }
