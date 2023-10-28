@@ -2,11 +2,12 @@
     text-align: center;
     margin: 0;
     margin-bottom: 20px;
+    color:black;
 }
 
 .idea
 {
-    background-color: #306645;
+    background-color: #c3ddcd;
 }
 
 .ideaContainer {
@@ -26,6 +27,7 @@
 
 .title {
     font-size: 50px;
+    color: black;
 }
 
 .ideaText {

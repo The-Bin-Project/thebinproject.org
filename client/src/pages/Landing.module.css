@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Bebas Neue');
 
 /* --- MAIN STYLE ---*/
 :root {
@@ -11,10 +11,18 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+
+.mainTitle{ 
+
+  font-size: 8vw;
+  color: #20272e;
+}
+
+
 h1 {
 
-  font-size: 50vw;
-  font-family: "Lato";
+  font-size: 90vw;
+  font-family: "Bebas Neue";
   font-weight: 400;
   margin-bottom: 0.5em;
   color: #20272e;

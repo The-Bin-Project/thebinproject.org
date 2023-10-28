@@ -42,8 +42,8 @@ function Idea() {
                         <source src={classVideo} type="video/mp4" />
                     </video>
                 </div>
-                <img src={binpic1} alt="Bin Picture 1" className={styles.binImage} />
-                <img src={binpic2} alt="Bin Picture 2" className={styles.binImage} />
+                {/* <img src={binpic1} alt="Bin Picture 1" className={styles.binImage} />
+                <img src={binpic2} alt="Bin Picture 2" className={styles.binImage} /> */}
             </section>
         </div>
     );

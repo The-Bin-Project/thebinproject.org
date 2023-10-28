@@ -2,12 +2,13 @@
 
 .fact-card {
     background-color: white;
-    padding: 20px;
+    padding: 60px;
     border: 1px solid #e0e0e0;
     border-radius: 25px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     height: 25vmin;
     margin: 20px auto;
+    padding:80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,13 +23,17 @@
     width: 100%; /* ensures the text doesn't overflow the card */
     text-align: center; /* centers the text within its width */
     margin: 0;
+    font-size: 2vw;
+    padding:60px;
+
 }
 
 .fact-title {
-    font-size: 2vw;
+    font-size: 2.5vw;
     /* margin-bottom: 16px; */
     font-family: "Lato";
     color: black;
+    padding:80px;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
@@ -36,6 +41,7 @@
     opacity: 0;
     visibility: hidden;
     font-size: 1.15vw;
+    padding:80px;
     color: #333;
     font-family: "Lato";
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -49,4 +55,5 @@
 .fact-card:hover .fact-title {
     opacity: 0;
     visibility: hidden;
+    padding:30px;
 }
