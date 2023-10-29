@@ -1,31 +1,78 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-    background-color: var(--green);
-    color: var(--peach);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 90px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	position: fixed;
+	top: 0;
+	z-index: 2;
+	width: calc(100vw - 2em);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fffcfc;
+  padding: 1em;
+  height: 50px;
+}
+  
+.navbarLeft,
+.navbarRight {
+  display: flex;
+  align-items: center;
 }
 
-.title 
-{
-    font-size: 36px;
-    font-family: 'Bebas Neue', sans-serif;
+.navbarLeft a {
+  font-size: 30px; /* Increase font size */
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s;
+}
+ 
+.navbarLeft a {
+  font-size: 30px; /* Increase font size */
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s;
+  font-family: "Lato";
 }
 
-.buttons button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 10px;
-    background: none;
-    color: var(--peach);
-    font-size: 22px;
-    font-family: 'Calibri', sans-serif;
+
+.navbarRight a,
+.navbarLeft a {
+  margin: 0 4px; /* Reduced space between the links */
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s;
+  font-family: "Lato";
+}
+
+.navbarRight a:hover,
+.navbarLeft a:hover {
+  color: rgb(2, 108, 41);
+}
+
+.navbarLogo {
+  height: 50px; 
+  margin: 0;
+  margin-right: 8px; 
+}
+
+.navbarRight a::after,
+.navbarLeft a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: rgb(2, 108, 41); 
+  width: 0;
+  transition: width 0.3s;
+  margin-top: 5px; 
+}
+
+.navbarRight a:hover::after,
+.navbarLeft a:hover::after {
+  width: 100%; 
+}
+
+
+.navbarRight a,
+.navbarLeft a {
+  box-sizing: content-box; 
+  padding: 0 4px; 
+  font-size: 20px;
 }

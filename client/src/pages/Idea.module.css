@@ -1,0 +1,52 @@
+.heading2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+    color:black;
+}
+
+.idea
+{
+    background-color: #c3ddcd;
+}
+
+.ideaContainer {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+    margin-bottom: 20px;
+}
+
+.whiteCard {
+    padding: 1rem;
+    background-color: #fff;  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+    border-radius: 10px;
+    width: 60%;
+}
+
+.title {
+    font-size: 50px;
+    color: black;
+}
+
+.ideaText {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+.videoPop {
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    object-fit: cover;
+}
+
+.binImage   
+{
+    height: 300px;
+}

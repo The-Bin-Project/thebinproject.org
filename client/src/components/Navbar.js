@@ -1,18 +1,28 @@
 import React from 'react';
-import classes from './Navbar.module.css';
+import styles from './Navbar.module.css';
+
+import logo from '../assets/logo.png'; 
 
 const Navbar = () => {
-    return (
-        <nav className={classes.navbar}>
-            <h3 className={classes.title}>The Bin Project</h3>
-            <div className={classes.buttons}>
-                <button>Landing</button>
-                <button>The Idea</button>
-                <button>About Us</button>
-                <button>Reports</button>
-            </div>
-        </nav>
-    );
+  const handleScroll = (selector) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className={styles.navbar}>
+      <div className={styles.navbarLeft}>
+        <img src={logo} alt="Project Bin Logo" className={styles.navbarLogo} onClick={() => { handleScroll('#pbin'); }} />
+        <a href="#pbin" onClick={(e) => { e.preventDefault(); handleScroll('#pbin'); }}>Project Bin</a>
+      </div>
+      <div className={styles.navbarRight}>
+        <a href="#idea" onClick={(e) => { e.preventDefault(); handleScroll('#idea'); }}>The Idea</a>
+        <a href="#team" onClick={(e) => { e.preventDefault(); handleScroll('#team'); }}>The Team</a>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
