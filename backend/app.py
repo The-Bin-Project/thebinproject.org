@@ -11,7 +11,6 @@ from flask import send_from_directory
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import base64
-
 from openai import OpenAI
 import json
 
@@ -238,10 +237,970 @@ def analyze_image(images, question, is_url):
 
     return response.choices[0].message.content
 
+@app.route('/test', methods=['GET'])
+def test():
+    results = [
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.15
+			},
+			{
+				"name": "Chicken or Vegettable Fired Rice with Egg",
+				"quantity": 0.05
+			},
+			{
+				"name": "Beans Paruppu Usili",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.25
+			},
+			{
+				"name": "Fish 65",
+				"quantity": 0.1
+			},
+			{
+				"name": "Beans Paruppu Usili",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.6
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.2
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.15
+			},
+			{
+				"name": "Chicken or Vegettable Fired Rice with Egg",
+				"quantity": 0.05
+			},
+			{
+				"name": "Beans Paruppu Usili",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.7
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Sticky Asian Fish",
+				"quantity": 0.1
+			},
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Pizza",
+				"quantity": 0.2
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.1
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Pasta",
+				"quantity": 0.15
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Vegetable",
+				"quantity": 0.08
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.92
+			}
+		],
+		[
+			{
+				"name": "Chicken Noodles Soup",
+				"quantity": 0.07
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.93
+			}
+		],
+		[
+			{
+				"name": "Vegetable",
+				"quantity": 0.1
+			},
+			{
+				"name": "Chicken Noodles Soup",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.95
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.15
+			},
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.2
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.25
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.95
+			}
+		],
+		[
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Naan",
+				"quantity": 0.05
+			},
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Pizza",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.95
+			}
+		],
+		[
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "Pasta",
+				"quantity": 0.15
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Pasta",
+				"quantity": 0.15
+			},
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Pasta",
+				"quantity": 0.2
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "Pasta",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "Pasta",
+				"quantity": 0.15
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.1
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1.0
+			}
+		],
+		[
+			{
+				"name": "Fish 65",
+				"quantity": 0.05
+			},
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.4
+			},
+			{
+				"name": "Chefs Salad",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.5
+			}
+		],
+		[
+			{
+				"name": "Pasta",
+				"quantity": 0.2
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.15
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Brown Rice",
+				"quantity": 0.1
+			},
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.25
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.25
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Naan",
+				"quantity": 0.1
+			},
+			{
+				"name": "Butter Chicken",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.15
+			},
+			{
+				"name": "Chicken",
+				"quantity": 0.05
+			},
+			{
+				"name": "Beans Paruppu Usili",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.1
+			},
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.9
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.1
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.2
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.6
+			}
+		],
+		[
+			{
+				"name": "Steamed Mixed Rice",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.15
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Lemon Rice",
+				"quantity": 0.05
+			},
+			{
+				"name": "Chefs Salad",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Chefs Salad",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.9
+			}
+		],
+		[
+			{
+				"name": "Chefs Salad",
+				"quantity": 0.1
+			},
+			{
+				"name": "Chicken or Vegettable Fired Rice with Egg",
+				"quantity": 0.1
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Chefs Salad",
+				"quantity": 0.15
+			},
+			{
+				"name": "Butter Chicken",
+				"quantity": 0.05
+			},
+			{
+				"name": "Naan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.75
+			}
+		],
+		[
+			{
+				"name": "Pasta",
+				"quantity": 0.15
+			},
+			{
+				"name": "Chefs Salad",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.02
+			},
+			{
+				"name": "Vegetable",
+				"quantity": 0.03
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.95
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Vegetable",
+				"quantity": 0.02
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.93
+			}
+		],
+		[
+			{
+				"name": "Chicken Noodles Soup",
+				"quantity": 0.06
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.94
+			}
+		],
+		[
+			{
+				"name": "Lemon Rice",
+				"quantity": 0.1
+			},
+			{
+				"name": "Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.15
+			},
+			{
+				"name": "Garlic Roasted Vegetable",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.8
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.05
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.07
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.08
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.08
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.05
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.87
+			}
+		],
+		[
+			{
+				"name": "EMPTY",
+				"quantity": 1
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.06
+			},
+			{
+				"name": "Stir fry Baby Kailan",
+				"quantity": 0.1
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.84
+			}
+		],
+		[
+			{
+				"name": "Fried Noodles",
+				"quantity": 0.15
+			},
+			{
+				"name": "EMPTY",
+				"quantity": 0.85
+			}
+		]
+    ]
+
+    results_flattened = [item for sublist in results for item in sublist]
+    # add together all quantities for each dish with the same name
+    results_dict = {}
+    for result in results_flattened:
+        name = result['name']
+        if name in results_dict:
+            results_dict[name] += result['quantity']
+        else:
+            results_dict[name] = result['quantity']
+
+    results_flattened = []
+    for name, quantity in results_dict.items():
+        results_flattened.append({ 'name': name, 'quantity': round(quantity, 4) })
+
+    # order descending by quantity
+    results_flattened = sorted(results_flattened, key=lambda k: k['quantity'], reverse=True)
+
+    # for each item in results_flattened, add a percentage by finding the sum of all quantities across all foods and dividing by that
+    total_quantity = sum([result['quantity'] for result in results_flattened])
+    for result in results_flattened:
+        result['percentage'] = round(result['quantity'] / total_quantity, 4)
+
+    # now, calculate another percentage but discluding the quantity from the category named "EMPTY"
+    total_quantity = sum([result['quantity'] for result in results_flattened if result['name'] != 'EMPTY'])
+    for result in results_flattened:
+        if result['name'] != 'EMPTY':
+            result['percentage_without_empty'] = round(result['quantity'] / total_quantity, 4)
+        else:
+            result['percentage_without_empty'] = 0
+
+    # Change the name "EMPTY" to "Clean Plate"
+    for result in results_flattened:
+        if result['name'] == 'EMPTY':
+            result['name'] = 'Clean Plate'
+
+    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully classified plates', 'results_flattened': results_flattened })
+
 @app.route('/classify_plates', methods=['GET'])
 def classify_plates():
     images_base64 = open_images_base64("plates_captured")
     images_base64_split = [images_base64[i:i + 5] for i in range(0, len(images_base64), 5)]
+
+    num_of_plates = len(images_base64)
 
     # print length of each batch
     for batch in images_base64_split: 
@@ -291,7 +1250,58 @@ def classify_plates():
     # order descending by quantity
     results_flattened = sorted(results_flattened, key=lambda k: k['quantity'], reverse=True)
 
-    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully classified plates', 'results': total_results, 'results_flattened': results_flattened })
+    # for each item in results_flattened, add a percentage by finding the sum of all quantities across all foods and dividing by that
+    total_quantity = sum([result['quantity'] for result in results_flattened])
+    for result in results_flattened:
+        result['percentage'] = round(result['quantity'] / total_quantity, 4)
+
+    # now, calculate another percentage but discluding the quantity from the category named "EMPTY"
+    total_quantity = sum([result['quantity'] for result in results_flattened if result['name'] != 'EMPTY'])
+    for result in results_flattened:
+        if result['name'] != 'EMPTY':
+            result['percentage_without_empty'] = round(result['quantity'] / total_quantity, 4)
+        else:
+            result['percentage_without_empty'] = 0
+
+    # Change the name "EMPTY" to "Clean Plate"
+    for result in results_flattened:
+        if result['name'] == 'EMPTY':
+            result['name'] = 'Clean Plate'
+
+    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully classified plates', 'results': total_results, 'results_flattened': results_flattened, 'num_of_plates': num_of_plates })
+
+# TAKES results_flattened and num_of_plates
+@app.route("/generate_report", methods=['POST'])
+def generate_report():
+    data = request.get_json()  # Get data posted as JSON
+    results_flattened = data['results_flattened']
+    num_of_plates = data['num_of_plates']
+
+    with open ('report_prompt.txt', 'r') as f:
+        prompt = f.read()
+        prompt = prompt.replace("<<NUM_OF_PLATES>>", str(num_of_plates))
+        prompt = prompt.replace("<<RESULTS_FLATTENED>>", json.dumps(results_flattened, indent=4))
+
+    print ("PROMPT:")
+    print (prompt)
+
+    response = client.chat.completions.create(
+        model="gpt-4-1106-preview", 
+        messages=[
+            {
+                "role": "user", 
+                "content": prompt
+            }
+        ],
+        max_tokens=2000,
+    )
+
+    report = response.choices[0].message.content
+    
+    print (report)
+
+    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully generated report', 'report': report })
+    
 
 if __name__ == '__main__':
     app.run(debug=True, port=3002)
