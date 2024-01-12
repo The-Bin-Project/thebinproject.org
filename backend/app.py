@@ -257,7 +257,24 @@ def classify_plates():
         for plate in plates: 
             total_results.append(plate)
 
-    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully classified plates', 'results': total_results })
+    results_flattened = [item for sublist in total_results for item in sublist]
+    # add together all quantities for each dish with the same name
+    results_dict = {}
+    for result in results_flattened:
+        name = result['name']
+        if name in results_dict:
+            results_dict[name] += result['quantity']
+        else:
+            results_dict[name] = result['quantity']
+
+    results_flattened = []
+    for name, quantity in results_dict.items():
+        results_flattened.append({ 'name': name, 'quantity': round(quantity, 4) })
+
+    # order descending by quantity
+    results_flattened = sorted(results_flattened, key=lambda k: k['quantity'], reverse=True)
+
+    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully classified plates', 'results': total_results, 'results_flattened': results_flattened })
 
 if __name__ == '__main__':
     app.run(debug=True, port=3002)
