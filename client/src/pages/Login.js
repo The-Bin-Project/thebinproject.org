@@ -10,15 +10,41 @@ function Login() {
   // Hook for navigation
   const navigate = useNavigate();
 
+  
+
   // Function to handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submit action
     // Check if credentials match
-    if (username === "uwc_east" && password === "secret") {
-      navigate('/admin'); // Navigate to /admin if credentials match
-    } else {
-      alert('Invalid credentials'); // Alert the user if credentials do not match
+    const response = await fetch('http://127.0.0.1:5000/check-login', {
+        method: 'POST',
+        body:JSON.stringify({
+        username:username,
+        password:password}),
+        headers: {
+            'Content-Type': 'application/json', // Ensure you're sending the data as JSON
+        },
+    });
+  
+    const data = await response.json();
+    if(data.message=="ok"){
+        alert("Login Successful")
+        navigate('/admin');
     }
+    else if(data.message=="no"){
+        alert("Invalid Credentials")
+    }
+
+    else if(data.message=="wrong_pass"){
+        alert("Wrong Password")
+    }
+
+    console.log(data);
+    // if (username === "uwc_east" && password === "secret") {
+    //   navigate('/admin'); // Navigate to /admin if credentials match
+    // } else {
+    //   alert('Invalid credentials'); // Alert the user if credentials do not match
+    // }
   };
 
   return (

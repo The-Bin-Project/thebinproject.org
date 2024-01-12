@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import cv2
 import numpy as np
-import base64
+from pymongo import MongoClient
 from skimage.metrics import structural_similarity as ssim
 from werkzeug.exceptions import RequestEntityTooLarge
 from flask_cors import CORS
@@ -9,11 +9,32 @@ import uuid
 import os
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
-
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
 CORS(app)
-
 app.config['MAX_CONTENT_LENGTH'] = 600 * 1024 * 1024 #600 Mb Max Upload Size
+mongo_uri = os.getenv('MONGO_URI')
+mongo_client = MongoClient(mongo_uri)
+db = mongo_client.main
+users = db.users
+
+@app.route('/check-login', methods=['POST'])
+def check_login():
+    # Extract credentials from request
+    username = request.json.get('username')
+    password = request.json.get('password')
+    print(username,password)
+    # Connect to your database and user collection
+    # Find user in database
+    # Check if user exists and password matches
+    user = users.find_one({'name': username})
+    print(user)
+    if user and user['password'] == password:
+        return jsonify({'message': 'Login successful'})                      
+    else:
+        return jsonify({'message': 'no'}), 401
+
 
 @app.route('/video-upload', methods=['POST'])
 def video_upload():
@@ -68,7 +89,7 @@ def split_images_white(selectionDimensions, selectionDimensions2, frame_width, f
         if not ret:
             print("Reached the end of the video")
             break
-
+        
         x1, y1, x2, y2 = scale_and_validate_roi(selectionDimensions, frame_width, frame_height)
         w1, h1 = x2 - x1, y2 - y1
         roi_frame = frame[y1:y1 + h1, x1:x1 + w1]
@@ -77,8 +98,6 @@ def split_images_white(selectionDimensions, selectionDimensions2, frame_width, f
         w2, h2 = x4 - x3, y4 - y3
         roi_frame_save = frame[y3:y3 + h2, x3:x3 + w2]
 
-
- 
         # Convert to grayscale for easier color thresholding
         gray_frame = cv2.cvtColor(roi_frame, cv2.COLOR_BGR2GRAY)
 

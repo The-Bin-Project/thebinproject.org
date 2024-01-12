@@ -3,11 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./AdminInterface.module.css";
 
 function AdminInterface() {
-	const [selectionDimensions, setSelectionDimensions] = useState([]); // [x1, y1, x2, y2]
-	const [selectionDimensions2, setSelectionDimensions2] = useState([]); // [x1, y1, x2, y2
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const navigate = useNavigate();
-
 
     const sendData = async () => {
         try {
@@ -15,11 +12,7 @@ function AdminInterface() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Ensure you're sending the data as JSON
-                },
-                body: JSON.stringify({
-                    selectionDimensions: selectionDimensions,
-                    selectionDimensions2: selectionDimensions2,
-                }), // Convert the data to JSON
+                }
             });
 
             if (!response.ok) {
@@ -40,27 +33,6 @@ function AdminInterface() {
         }
     };
 
-
-    
-    // const handleVideoUpload = files => {
-    //     const uploaded = [...uploadedFiles];
-    //     let limitExceeded = false;
-    //     files.some((file) => {
-    //       if (uploaded.findIndex(f => f.name === file.name) === -1) {
-    //         uploaded.push(file);
-    //         if (uploaded.length === numberOfVids) setFileLimit(true);
-    //         if (uploaded.length > numberOfVids) {
-    //           alert(`You can only add a maximum of ${numberOfVids} files`);
-    //           setFileLimit(false);
-    //           limitExceeded = true;
-    //           return true;
-    //         }
-    //       }
-    //     });
-      
-    //     if (!limitExceeded) setUploadedFiles(uploaded)
-    //   };
-      
       const handleFileUpload = (event) => {
         setUploadedFiles(prevFiles => [...prevFiles, ...Array.from(event.target.files)]);
     };
@@ -94,9 +66,6 @@ function AdminInterface() {
         }
         return response.json(); // Return the response JSON to be processed or logged
     };
-    
-    
-	// console.log("url", videoFile)
 
     return (
         <div>
