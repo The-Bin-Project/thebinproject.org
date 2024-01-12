@@ -1,0 +1,113 @@
+.card {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    padding: 20px;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+
+.uploadInput {
+    width: 40%;
+    /* margin-bottom: 20px; */
+    margin-left:20px;
+    padding:20px;
+
+}
+
+.canvasContainer {
+    position: relative;
+
+}
+.canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* lower z-index for the video canvas */
+}
+
+.videoContainer {
+    position: relative;
+    width: fit-content; /* Adjust as per video size */
+    margin: auto;
+}
+
+.videoCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* lower z-index for the video canvas */
+}
+
+.selectionCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* higher z-index for the selection canvas */
+    pointer-events: none; /* So it doesn't block video controls */
+}
+
+
+.videoPlayer {
+    width: 100%;
+    height: auto;
+    display: block; /* Ensures the video is a block-level element */
+    margin: auto; /* This centers the video horizontally */
+}
+.imageGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Adjust as needed */
+    margin-top: 20px;
+}
+
+.imageGallery img {
+    max-width: 150px; /* Adjust as needed */
+    height: auto;
+    border: 1px solid #ddd; /* Optional */
+    border-radius: 4px; /* Optional */
+    padding: 5px; /* Optional */
+}
+
+.heading{
+    color:white;
+    padding:20px;
+    background-color: rgb(6, 69, 14);
+}
+
+.paragraph{
+    font-family: "Lato";
+    padding:20px;
+    font-size: 1.2vw;
+}
+
+.paragraph1{
+    font-family: "Lato";
+    padding:20px;
+    font-size: 1vw;
+}
+
+.bold{
+    font-weight: bold;
+    padding:20px;
+}
+
+.list{
+    font-family: "Lato";
+    padding-left:20px;
+    font-size: 1vw;
+
+}
+
+
+.button{
+    width:10%;
+    margin-left:20px;
+}

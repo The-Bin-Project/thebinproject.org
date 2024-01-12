@@ -21,6 +21,7 @@ const Navbar = () => {
         <a href="#idea" onClick={(e) => { e.preventDefault(); handleScroll('#idea'); }}>The Idea</a>
         <a href="#team" onClick={(e) => { e.preventDefault(); handleScroll('#team'); }}>The Team</a>
         <a href="#cwork" onClick={(e) => { e.preventDefault(); handleScroll('#cwork'); }}>Current Work</a>
+        <a href="##login" onClick={(e) => { e.preventDefault(); handleScroll('#login'); }}> Login</a>
       </div>
     </div>
   );
