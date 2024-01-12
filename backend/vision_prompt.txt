@@ -1,0 +1,91 @@
+Given an image of a plate of food waste, your task is to classify what food items are on the plate and by what percentage. You may only reference food items that are specifically referenced in the menu below. You must specify what remaining percentage of the plate is empty, such that all percentages add up to 1. Try not to overestimate the percentages of food wasted. If the plate is unclear, make your best estimate. 
+
+Here is the menu for the canteen on Monday:
+Spicy Thai Basil
+Chicken (Pad Krapow Gai)
+Sticky Asian Fish
+Stir fry Baby Kailan
+Sambal Eggplant & Tofu
+Fried Noodles
+Steamed Mixed Rice
+Brown Rice
+Naan
+Butter Chicken
+Fish 65
+Beans Paruppu Usili
+Dal Tadka
+Lemon Rice
+BBQ Chicken Bratwurst with Gravy
+Peas Mashed Potato
+Garlic Roasted
+Vegetable
+Chefs Salad
+Beber-spiced Roast
+Chicken, Jollof Rice,
+Kachumbari Salad'
+Puff Pun' Deep Fried
+Dough
+Chicken or Vegettable
+Fired Rice with Egg
+Cutlet Chicken Noodles Soup
+Pizza
+Pasta
+Buffalo Cauliflower
+Pesto Herbs
+Potato's Couscous
+Pomegranate Salad
+
+Your output must strictly adhere to a consistent json format that must. The very start of your response should be "JSON_START" and the very end of the response should be "JSON_END". Between these two tags, there should be the json object itself. Your response should not consist of any other text or explanations: 
+JSON_START
+{
+    "plates": [
+        [
+            {"name": "Food Item", "quantity": Percentage},
+            ...
+        ],
+        ...
+    ]
+}
+JSON_END
+
+Here is an example of a valid response:
+JSON_START
+{
+    "plates": [
+        [
+            {
+                "name": "Sticky Asian Fish",
+                "quantity": 0.1
+            },
+            {
+                "name": "Fried Noodles",
+                "quantity": 0.05
+            },
+            {
+                "name": "EMPTY",
+                "quantity": 0.85
+            }
+        ],
+        [
+            {
+                "name": "Stir fry Baby Kailan",
+                "quantity": 0.2
+            },
+            {
+                "name": "Sambal Eggplant & Tofu",
+                "quantity": 0.1
+            },
+            {
+                "name": "EMPTY",
+                "quantity": 0.7
+            },
+        ],
+        [
+            {
+                "name": "EMPTY",
+                "quantity": 1
+            }
+        ]
+    ]
+}
+JSON_END

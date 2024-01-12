@@ -9,9 +9,17 @@ import uuid
 import os
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
+from dotenv import load_dotenv
+from openai import OpenAI
+import json
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+
+MONGO_URI = os.getenv('MONGO_URI')
+OPENAI_KEY = os.getenv('OPENAI_KEY')
 
 app.config['MAX_CONTENT_LENGTH'] = 600 * 1024 * 1024 #600 Mb Max Upload Size
 
@@ -173,6 +181,83 @@ def delete_image(filename):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+def open_file (file_path):
+    with open(file_path, 'rb') as image_file:
+        base64_encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
+        # add data:image/jpeg;base64,
+        base64_encoded_image = "data:image/jpeg;base64," + base64_encoded_image
+        return base64_encoded_image
+
+def open_images_base64(folder_path): 
+    # go through all images in the folder and return a list of base64 encoded images
+    images = []
+    for filename in os.listdir(folder_path):
+        image_path = os.path.join(folder_path, filename)
+        if os.path.isfile(image_path) and image_path.endswith('.jpg'):
+            images.append(open_file(image_path))
+    return images
+
+client = OpenAI()
+
+def analyze_image(images, question, is_url): 
+    request_content = [{ "type": "text", "text": question }]
+
+    for image in images:
+        if is_url: 
+            request_content.append({ "type": "image_url", "image_url": { "url": image }})
+        else: 
+            request_content.append({ "type": "image_url", "image_url": { "url": image }})
+
+    response = client.chat.completions.create(
+        model="gpt-4-vision-preview", 
+        messages=[
+            {
+                "role": "user", 
+                "content": request_content
+            }
+        ],
+        max_tokens=1000,
+    )
+
+    return response.choices[0].message.content
+
+@app.route('/classify_plates', methods=['GET'])
+def classify_plates():
+    images_base64 = open_images_base64("plates_captured")
+    images_base64_split = [images_base64[i:i + 5] for i in range(0, len(images_base64), 5)]
+
+    # print length of each batch
+    for batch in images_base64_split: 
+        print(len(batch))
+
+    with open ('vision_prompt.txt', 'r') as f:
+        prompt = f.read()
+    
+    total_results = []
+
+    # MAX_COUNT=1
+    for index, batch in enumerate(images_base64_split): 
+        # if index >= MAX_COUNT: 
+        #     break
+
+        print ("PROCESSING BATCH " + str(index + 1))
+
+        result = analyze_image(batch, prompt, False)
+
+        first_line = result.split('\n')[0]
+        if first_line != '{':
+            result = "\n".join(result.split('\n')[1:-1])
+
+        print (result)
+
+        result_json = json.loads(result)
+
+        plates = result_json['plates']
+
+        for plate in plates: 
+            total_results.append(plate)
+
+    return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully classified plates', 'results': total_results })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=3002)
