@@ -10,6 +10,7 @@ import os
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
+import base64
 
 from openai import OpenAI
 import json
