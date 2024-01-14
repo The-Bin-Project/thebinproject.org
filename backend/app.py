@@ -24,6 +24,9 @@ mongo_client = MongoClient(mongo_uri)
 db = mongo_client.main
 users = db.users
 
+openai_key = os.getenv('OPENAI_KEY')
+openai_client = OpenAI(api_key=openai_key)
+
 @app.route('/check-login', methods=['POST'])
 def check_login():
     # Extract credentials from request
@@ -213,8 +216,6 @@ def open_images_base64(folder_path):
             images.append(open_file(image_path))
     return images
 
-client = OpenAI()
-
 def analyze_image(images, question, is_url): 
     request_content = [{ "type": "text", "text": question }]
 
@@ -224,7 +225,7 @@ def analyze_image(images, question, is_url):
         else: 
             request_content.append({ "type": "image_url", "image_url": { "url": image }})
 
-    response = client.chat.completions.create(
+    response = openai_client.chat.completions.create(
         model="gpt-4-vision-preview", 
         messages=[
             {
@@ -1285,7 +1286,7 @@ def generate_report():
     print ("PROMPT:")
     print (prompt)
 
-    response = client.chat.completions.create(
+    response = openai_client.chat.completions.create(
         model="gpt-4-1106-preview", 
         messages=[
             {
