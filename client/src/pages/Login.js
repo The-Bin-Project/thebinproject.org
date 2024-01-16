@@ -29,14 +29,10 @@ function Login() {
     const data = await response.json();
     if(data.message=="ok"){
         alert("Login Successful")
-        navigate('/admin');
+        navigate('/school',{state:{schoolName:username}});
     }
     else if(data.message=="no"){
         alert("Invalid Credentials")
-    }
-
-    else if(data.message=="wrong_pass"){
-        alert("Wrong Password")
     }
 
     console.log(data);

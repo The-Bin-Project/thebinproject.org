@@ -1,0 +1,68 @@
+.heading{
+    color:white;
+    padding:20px;
+    background-color: rgb(6, 69, 14);
+}
+
+.paragraph{
+    font-family: "Lato";
+    padding:20px;
+    font-size: 1.2vw;
+}/* Add a new class for the container */
+.chartsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows the charts to wrap on smaller screens */
+}
+
+.button{
+    width:10%;
+    margin-left:20px;
+}
+
+.reportBox {
+    width: 100%; /* Set width to fill the container */
+    height: 200px; /* Set a fixed height */
+    margin-top: 20px; /* Add some space above the textarea */
+    border: 1px solid #ccc; /* A light border for the textarea */
+    padding: 10px; /* Some padding inside the textarea */
+    resize: none; /* Prevent resizing if you want a fixed size */
+}
+
+
+.Chart {
+    padding: 20px; /* Adjust padding if needed */
+    margin-bottom: -120px; /* Adjust the bottom margin to control vertical spacing */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-basis: calc(50% - 40px); /* Adjust width, subtracting padding */
+    max-width: 700px; /* Adjust the max width as needed */
+    height: 600px; /* Adjust the height as needed */
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.chartsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows the charts to wrap on smaller screens */
+}
+
+.Chart {
+    padding: 20px; /* Adjust padding if needed */
+    margin-bottom: -200px; /* Adjust the bottom margin to control vertical spacing */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-basis: calc(50% - 40px); /* Adjust width, subtracting padding */
+    max-width: 700px; /* Adjust the max width as needed */
+    height: 600px; /* Adjust the height as needed */
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+

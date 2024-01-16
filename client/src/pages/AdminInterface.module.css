@@ -111,3 +111,13 @@
     width:10%;
     margin-left:20px;
 }
+
+.textInput{
+    width: 20%;
+    margin-bottom: 20px;
+    margin-left:20px;
+    padding:20px;
+    border-radius: 3px;
+
+
+}

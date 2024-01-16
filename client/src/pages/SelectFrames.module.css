@@ -4,6 +4,17 @@
     grid-gap: 10px;
     padding: 20px;
 }
+.Chart {
+    padding: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 800px;  /* Adjust the width as needed */
+    height: 600px; /* Adjust the height as needed */
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
 
 .gridImage {
     width: 100%;
