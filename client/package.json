@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "client",
+  "author": "Antoine-Lee",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "gatsby": "^5.12.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
