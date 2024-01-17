@@ -20,13 +20,21 @@ app = Flask(__name__)
 CORS(app)
 
 app.config['MAX_CONTENT_LENGTH'] = 600 * 1024 * 1024 #600 Mb Max Upload Size
-mongo_uri = os.getenv('MONGO_URI')
-mongo_client = MongoClient(mongo_uri)
-db = mongo_client["main"]
-users = db["users"]
 # results = db["results"]
 openai_key = os.getenv('OPENAI_KEY')
 openai_client = OpenAI(api_key=openai_key)
+
+# try:
+
+mongo_uri = os.getenv('MONGO_URI')
+# mongo_client = MongoClient(mongo_uri)
+mongo_client = MongoClient(mongo_uri, tls=True, tlsAllowInvalidCertificates=True)
+db = mongo_client["main"]
+users = db["users"]
+print("Connected to MongoDB cluster successfully.")
+
+# except pymongo.errors.ConnectionFailure as e:
+#     print(f"Connection failed: {e}")
 
 def getMenu(username):
     user = users.find_one({"name": username})
@@ -67,19 +75,29 @@ def update_menu():
 
 @app.route('/check-login', methods=['POST'])
 def check_login():
-    # Extract credentials from request
-    username = request.json.get('username')
-    password = request.json.get('password')
-    print(username,password)
-    # Connect to your database and user collection
-    # Find user in database
-    # Check if user exists and password matches
-    user = users.find_one({"name": username, "password": password})
-    print(user)
-    if user:
-        return jsonify({'message': 'ok'})                      
-    else:
-        return jsonify({'message': 'no'}), 401
+    try:
+        print("Received login request")
+        # Extract credentials from request
+        username = request.json.get('username')
+        password = request.json.get('password')
+        print(username, password)
+        # Connect to your database and user collection
+        # Find user in database
+        # Check if user exists and password matches
+        print("A")
+        print(users)
+        user = users.find_one({"name": username, "password": password})
+        print("B")
+        # print(user)
+        
+        if user:
+            return jsonify({'message': 'ok'})
+        else:
+            return jsonify({'message': 'no'}), 401
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({'message': 'error'}), 500
+
 
 
 @app.route('/video-upload', methods=['POST'])

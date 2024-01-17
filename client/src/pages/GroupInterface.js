@@ -50,7 +50,7 @@ function GroupInterface() {
                 });
         
                 try {
-                    const response = await fetch('http://127.0.0.1:5000/get-results', {
+                    const response = await fetch(process.env.REACT_APP_BACKEND + '/get-results', {
                         method: 'POST',
                         body: JSON.stringify({ schoolName: schoolName, groupName: group }),
                         headers: {
@@ -156,7 +156,7 @@ function GroupInterface() {
         });
     
         // Make the POST request to generate the report
-        fetch('http://127.0.0.1:5000/generate_report', {
+        fetch(process.env.REACT_APP_BACKEND + '/generate_report', {
             method: 'POST',
             body: JSON.stringify({
                 groupName: group,
