@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.card {
+  background-color: rgb(206, 231, 201);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  height:400px;
+  margin: 100px auto;
+  display: flex; /* Make this a flex container */
+  flex-direction: column; /* Align children vertically */
+  align-items: center; 
+  justify-content: center; /* Center children vertically */
+}
+
+.Form{
+
+  width:40%
+}
+
+.inputBox {
+  width: 100%; /* Full width of the form */
+  padding: 10px;
+  margin-bottom: 10px; /* Space between inputs */
+  border: 1px solid #ddd;
+  height:50px;
+  border-radius: 4px;
+}
+
+button {
+  width: 40%; /* Full width of the form */
+  padding: 10px;
+  margin-left:110px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.infoText {
+  font-size: 1vw;
+  color: #20272e;
+  font-family: "Lato";
+  font-weight: 400;
+  margin-bottom: 0.1em;
+  text-align: center;
+}
+
+.heading2 {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  color: black;
+}

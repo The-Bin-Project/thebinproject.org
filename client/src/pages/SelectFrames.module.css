@@ -1,0 +1,47 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+    padding: 20px;
+}
+.Chart {
+    padding: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 800px;  /* Adjust the width as needed */
+    height: 600px; /* Adjust the height as needed */
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.gridImage {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    /* Optional: add a hover effect */
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.button{
+    width:10%;
+    margin-left:20px;
+}
+
+
+.heading{
+    color:white;
+    padding:20px;
+    background-color: rgb(6, 69, 14);
+}
+
+.paragraph{
+    font-family: "Lato";
+    padding:20px;
+    font-size: 1.2vw;
+}

@@ -1,0 +1,39 @@
+.heading2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+    color:black;
+}
+
+@media (max-width: 768px) {
+    .reportContainer iframe {
+        width: 100%;
+    }
+}
+.reportContainer {
+    display: flex; /* Establishes a flex container */
+    justify-content: space-between; /* Distributes space between children */
+    align-items: flex-start; /* Aligns items to the start of the flex container */
+    gap: 10px; /* Optional: adds space between the iframes */
+  }
+  
+
+
+.reportIframe{
+    max-width: 100%; /* This ensures the iframe can grow up to the width of its parent */
+    height: 400px; /* Or whatever height you wish */
+  }
+
+  .googleSlidesIframe {
+    height: 400px; /* Keeps the height consistent with other iframes */
+    width: 60%; /* Adjust the width to be wider than the others */
+  }
+  
+.reports
+{
+    background-color: #c3ddcd;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content horizontally */
+    padding: 20px;
+}

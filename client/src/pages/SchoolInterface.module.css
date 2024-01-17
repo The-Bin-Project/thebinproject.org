@@ -1,0 +1,26 @@
+
+.heading{
+    color:white;
+    padding:20px;
+    background-color: rgb(6, 69, 14);
+}
+
+.paragraph{
+    font-family: "Lato";
+    padding:20px;
+    font-size: 1.2vw;
+}
+
+.button{
+    width:10%;
+    margin-top:20px;
+    margin-left:20px;
+}
+
+.groupButton{
+    width:8%;
+    margin-top:5px;
+    margin-bottom:30px;
+    background-color: rgb(6, 69, 14);
+    margin-left:20px;
+}
