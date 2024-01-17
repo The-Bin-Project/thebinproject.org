@@ -40,7 +40,7 @@ function MenuTable(props) {
     const updateDB = () => {
         // write a post request to backend with the table informatoin
         console.log(data);
-        fetch('http://127.0.01:5000/update-menu', {
+        fetch(process.env.REACT_APP_BACKEND + '/update-menu', {
             method: 'POST',
             body:JSON.stringify({
                 menu:data,
