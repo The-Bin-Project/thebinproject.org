@@ -511,4 +511,4 @@ def get_results():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3002)
+    app.run(debug=False, port=3002)
