@@ -110,12 +110,8 @@ def video_upload():
         selection_dimensions = json.loads(selection1)
         selection_dimensions2 = json.loads(selection2)
         
-        split_images_white_data = [selection_dimensions['x1'],selection_dimensions['y1'],selection_dimensions['x2'],selection_dimensions['y2']]
-        split_images_white2_data = [
-            selection_dimensions2['x1'],
-            selection_dimensions2['y1'],
-            selection_dimensions2['x2'],
-            selection_dimensions2['y2']]
+        split_images_white_data = [selection_dimensions['x1'], selection_dimensions['y1'], selection_dimensions['x2'], selection_dimensions['y2']]
+        split_images_white2_data = [selection_dimensions2['x1'], selection_dimensions2['y1'], selection_dimensions2['x2'], selection_dimensions2['y2']]
 
         print(selection1, selection2)
         file_objects = request.files.getlist('video')
@@ -123,6 +119,10 @@ def video_upload():
         if not file_objects:
             print("no video part")
             return jsonify({'error': 'No video file part'}), 400
+        
+        # Create the 'video_saved' folder if it doesn't exist
+        if not os.path.exists('video_saved'):
+            os.makedirs('video_saved')
         
         for file in file_objects:
             if file.filename == '':
@@ -141,30 +141,6 @@ def video_upload():
         print(f"Error: {str(e)}")
         return jsonify({'message': 'error'}), 500
 
-
-
-@app.route('/split-frames', methods=['POST'])
-def split_frames():
-    # Accessing the JSON data sent from the frontend
-    data = request.json
-    selection_dimensions = data['selectionDimensions']
-    selection_dimensions2 = data['selectionDimensions2']
-    split_images_white_data = [selection_dimensions['x1'],selection_dimensions['y1'],selection_dimensions['x2'],selection_dimensions['y2']]
-    split_images_white2_data = [
-    selection_dimensions2['x1'],
-    selection_dimensions2['y1'],
-    selection_dimensions2['x2'],
-    selection_dimensions2['y2']
-]
-    cap = cv2.VideoCapture('./video_saved/vid.mp4')
-
-    # Get video frame dimensions
-
-#     # Process the video
-    split_images_white(split_images_white_data, split_images_white2_data)
-
-#     cap.release()
-    return jsonify({'message': 'ok'})
 
 #write a funciton to delete all videos in the video_saved folder
 def deleteVideo():
