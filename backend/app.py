@@ -159,6 +159,10 @@ def split_images_white(selectionDimensions, selectionDimensions2):
     frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
     
     # Create a subfolder with a unique name inside the plates_captured folder
+    # create plates_captured folder if it doesn't exist
+    if not os.path.exists('plates_captured'):
+        os.makedirs('plates_captured')
+        
     subfolder_name = os.path.join('plates_captured', str(uuid.uuid4()))
     os.mkdir(subfolder_name)
 
