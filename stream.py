@@ -8,7 +8,7 @@ import json
 
 cap = cv2.VideoCapture(0)
 
-api_key = "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"
+
 
 headers = {
   "Content-Type": "application/json",
