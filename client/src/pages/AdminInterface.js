@@ -136,9 +136,13 @@ function AdminInterface() {
             return;
         }
     
-        const video = videos[0];
         if (!selectionDimensions1 || !selectionDimensions2) {
             alert("Please select both ROI dimensions.");
+            return;
+        }
+    
+        if (groupName.trim() === "") {
+            alert("Group name cannot be empty.");
             return;
         }
     
@@ -156,10 +160,10 @@ function AdminInterface() {
     
         try {
             const formData = new FormData();
-            formData.append('video', video.blob);
+            formData.append('video', videos[0].blob);
             formData.append('selection1', JSON.stringify(selectionDimensions1));
             formData.append('selection2', JSON.stringify(selectionDimensions2));
-            console.log("SENDING");
+            formData.append('groupName', groupName); // Add groupName to the FormData
     
             const response = await fetch('http://127.0.0.1:5000/video-upload', {
                 method: 'POST',
