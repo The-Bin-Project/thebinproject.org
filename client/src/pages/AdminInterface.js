@@ -52,7 +52,7 @@ function AdminInterface() {
             // else, continue with the upload
             const formData = new FormData();
             formData.append('video', event.target.files[0]);
-            fetch("http://127.0.0.1:5000/convert-mp4", {
+            fetch(process.env.REACT_APP_BACKEND + '/convert-mp4', {
                 method: 'POST',
                 body: formData,
             }).then(response => {
