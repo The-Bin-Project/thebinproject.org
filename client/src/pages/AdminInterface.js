@@ -219,7 +219,7 @@ function AdminInterface() {
             formData.append('selection2', JSON.stringify(selectionDimensions2));
             formData.append('groupName', groupName); // Add groupName to the FormData
     
-            const response = await fetch("http://127.0.0.1:5000" + '/video-upload', {
+            const response = await fetch(process.env.REACT_APP_BACKEND + '/video-upload', {
                 method: 'POST',
                 body: formData,
             });
@@ -284,7 +284,7 @@ function AdminInterface() {
         console.log("SENDING")
     
         try {
-            const response = await fetch("http://127.0.0.1:5000" + '/video-upload', {
+            const response = await fetch(process.env.REACT_APP_BACKEND + '/video-upload', {
                 method: 'POST',
                 body: formData,
             });

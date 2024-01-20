@@ -17,7 +17,7 @@ function Login() {
 
         console.log ("SEINDING REUEST")
         const response = await fetch(
-            "http://127.0.0.1:5000" + "/check-login",
+            process.env.REACT_APP_BACKEND + "/check-login",
             {
                 method: "POST",
                 body: JSON.stringify({

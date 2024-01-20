@@ -9,7 +9,7 @@ function MenuTable(props) {
         const fetchMenu = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch("http://127.0.0.1:5000" + '/fetch-menu', {
+                const response = await fetch(process.env.REACT_APP_BACKEND + '/fetch-menu', {
                     method: 'POST',
                     body: JSON.stringify({ username: props.schoolName }),
                     headers: { 'Content-Type': 'application/json' },
@@ -40,7 +40,7 @@ function MenuTable(props) {
     const updateDB = () => {
         // write a post request to backend with the table informatoin
         console.log(data);
-        fetch("http://127.0.0.1:5000" + '/update-menu', {
+        fetch(process.env.REACT_APP_BACKEND + '/update-menu', {
             method: 'POST',
             body:JSON.stringify({
                 menu:data,

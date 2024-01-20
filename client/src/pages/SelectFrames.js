@@ -21,7 +21,7 @@ function SelectFrames() {
             timer: 3000, // Optional: close alert automatically after 3000ms
         });
     
-        fetch("http://127.0.0.1:5000" + '/classify_plates', {
+        fetch(process.env.REACT_APP_BACKEND + '/classify_plates', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ function SelectFrames() {
             alert("Please login before entering this page")
             navigate('/');
         }
-        fetch("http://127.0.0.1:5000" + '/get-all-images')
+        fetch(process.env.REACT_APP_BACKEND + '/get-all-images')
             .then(response => response.json())
             .then(data => {
                 setImages(data.images); // Assuming the response contains an array of image filenames
@@ -78,7 +78,7 @@ function SelectFrames() {
 
     const handleImageClick = (imageName) => {
         if (window.confirm(`Do you want to delete this image: ${imageName}?`)) {
-            fetch("http://127.0.0.1:5000" + `/delete-image/${imageName}`, { method: 'DELETE' })
+            fetch(process.env.REACT_APP_BACKEND + `/delete-image/${imageName}`, { method: 'DELETE' })
                 .then(response => response.json())
                 .then(data => {
                     if(data.message === "Image deleted") {
@@ -103,7 +103,7 @@ function SelectFrames() {
             {images.map((image, index) => (
     <img
             key={index}
-                src={"http://127.0.0.1:5000" + `/images/${image}`} // Update with the correct server URL
+                src={process.env.REACT_APP_BACKEND + `/images/${image}`} // Update with the correct server URL
                  alt={`Processed frame ${index}`}
                 className={styles.gridImage}
                 onClick={() => handleImageClick(image)}
