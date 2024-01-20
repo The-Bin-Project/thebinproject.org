@@ -41,33 +41,86 @@ function AdminInterface() {
     }, [currentSelection, currentVideoIndex]);
 
     const handleVideoUpload = (event) => {
+        console.log("video uploaded")
         resetState(); // Reset state before adding new videos
-        const files = Array.from(event.target.files);
-        const newVideos = files.map(file => ({
-            file: URL.createObjectURL(file),
-            blob: file
-        }));
-        setVideos(newVideos);
+        // check if the file is not .mp4 format
+        if (event.target.files[0].type !== "video/mp4") {
+            console.log("not mp4 file")
+            alert("Please wait whilst we convert your video into the appropriate format.")
+            // fetch backend route check-mp4 passing the file
+            // if the response is not ok, alert the user and return
+            // else, continue with the upload
+            const formData = new FormData();
+            formData.append('video', event.target.files[0]);
+            fetch("http://127.0.0.1:5000/convert-mp4", {
+                method: 'POST',
+                body: formData,
+            }).then(response => {
+                if (!response.ok) {
+                    alert("An error occurred during the file upload.");
+                    return;
+                }
+                console.log("mp4 file received");
+                return response.blob();  // Convert the response to a blob
+            }).then(blob => {
+                const convertedVideoUrl = URL.createObjectURL(blob); // Create an object URL from the blob
+            
+                // Assuming `setVideos` is a function to update your video state
+                // Replace or append the new video URL to your video state
+                setVideos([{ file: convertedVideoUrl, blob: blob }]);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }            
+        else{
+            const files = Array.from(event.target.files);
+            const newVideos = files.map(file => ({
+                file: URL.createObjectURL(file),
+                blob: file
+            }));
+            setVideos(newVideos);
+            console.log("finished uploadeing")
+
+        }
+       
     };
 
 
     const extractFrame = () => {
-        if (!videoRef.current) return;
+        console.log("extracting frame");
+        if (!videoRef.current){
+            console.log("no video ref")
+            return;
+    }
         videoRef.current.src = videos[currentVideoIndex].file;
+        
         videoRef.current.onloadedmetadata = () => {
-            const video = videoRef.current;
-            canvasRef.current.width = video.videoWidth;
-            canvasRef.current.height = video.videoHeight;
-            drawInitialFrame();
-
-            video.currentTime = 3.33; // Assuming 30 fps
+            console.log("Metadata loaded");
+            if (videoRef.current.readyState >= 4) { // HAVE_ENOUGH_DATA
+                processVideoFrame();
+            } else {
+                videoRef.current.oncanplaythrough = processVideoFrame;
+            }
         };
     };
+    
+    const processVideoFrame = () => {
+        console.log("Processing frame");
+        const video = videoRef.current;
+        console.log(video.videoWidth, video.videoHeight);
+        canvasRef.current.width = video.videoWidth;
+        canvasRef.current.height = video.videoHeight;
+        drawInitialFrame();
+        video.currentTime = 3.33; // Assuming 30 fps
+    };
+    
 
     const drawInitialFrame = () => {
+        console.log("drawing initial frame")
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
         const video = videoRef.current;
+        console.log(video.videoWidth, video.videoHeight)
         if (canvas && video) {
             // Only draw the image without clearing the canvas
             context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
@@ -76,6 +129,7 @@ function AdminInterface() {
     };
 
     const drawSelection = () => {
+        console.log("drawing selection")
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
         if (!currentSelection || !canvas) return;
@@ -165,7 +219,7 @@ function AdminInterface() {
             formData.append('selection2', JSON.stringify(selectionDimensions2));
             formData.append('groupName', groupName); // Add groupName to the FormData
     
-            const response = await fetch(process.env.REACT_APP_BACKEND + '/video-upload', {
+            const response = await fetch("http://127.0.0.1:5000" + '/video-upload', {
                 method: 'POST',
                 body: formData,
             });
@@ -230,7 +284,7 @@ function AdminInterface() {
         console.log("SENDING")
     
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND + '/video-upload', {
+            const response = await fetch("http://127.0.0.1:5000" + '/video-upload', {
                 method: 'POST',
                 body: formData,
             });

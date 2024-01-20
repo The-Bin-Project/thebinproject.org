@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import cv2
 import numpy as np
+import ffmpeg
 from pymongo import MongoClient
 import shutil
+import tempfile
 from skimage.metrics import structural_similarity as ssim
 from werkzeug.exceptions import RequestEntityTooLarge
 from flask_cors import CORS
@@ -19,7 +21,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-app.config['MAX_CONTENT_LENGTH'] = 600 * 1024 * 1024 #600 Mb Max Upload Size
+app.config['MAX_CONTENT_LENGTH'] = 2000 * 1024 * 1024 #600 Mb Max Upload Size
 # results = db["results"]
 openai_key = os.getenv('OPENAI_KEY')
 openai_client = OpenAI(api_key=openai_key)
@@ -100,11 +102,39 @@ def check_login():
 
 
 
+@app.route('/convert-mp4', methods=['POST'])
+#write a function to conver an incoming video to mp4 format and send it back
+def check_and_convert_mp4():
+    if 'video' not in request.files:
+        return "No file part", 400
+    
+    file = request.files['video']
+    if file.filename == '':
+        return "No selected file", 400
+
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
+            input_path = temp_file.name
+
+        file.save(input_path)
+
+        output_path = input_path + '_converted.mp4'
+        ffmpeg.input(input_path).output(output_path).run()
+
+        return send_file(output_path, as_attachment=True, mimetype='video/mp4')
+
+    except Exception as e:
+        return str(e), 500
+
+    finally:
+        os.remove(input_path)
+        os.remove(output_path)
+    
 @app.route('/video-upload', methods=['POST'])
 def video_upload():
     try:
         print("Received video upload request")
-        print(request.files)
+        # print(request.files)
         selection1 = request.form.get('selection1')
         selection2 = request.form.get('selection2')
         selection_dimensions = json.loads(selection1)
@@ -491,4 +521,4 @@ def get_results():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=3002)
+    app.run(debug=False, port=3001)
