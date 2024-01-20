@@ -1,3 +1,4 @@
 plates_captured
 .env
 *.pyc
+venv
