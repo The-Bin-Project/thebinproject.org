@@ -218,16 +218,17 @@ function AdminInterface() {
             formData.append('selection1', JSON.stringify(selectionDimensions1));
             formData.append('selection2', JSON.stringify(selectionDimensions2));
             formData.append('groupName', groupName); // Add groupName to the FormData
-    
+            console.log("sending req")
             const response = await fetch(process.env.REACT_APP_BACKEND + '/video-upload', {
                 method: 'POST',
                 body: formData,
             });
     
             if (!response.ok) {
+                console.log(response)
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
+            
             const data = await response.json();
             console.log(data);
     
@@ -237,11 +238,13 @@ function AdminInterface() {
                     title: 'Error',
                     text: 'Error in uploading video, please refresh and try again.',
                     buttonsStyling: false,
+                    showConfirmButton: false,
                 });
             } else if (data.message === "ok") {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
+                    showConfirmButton: false,
                     text: 'Video uploaded and processed successfully.',
                     buttonsStyling: false,
                 });
@@ -250,6 +253,7 @@ function AdminInterface() {
             console.error('Error during the file upload:', error);
             Swal.fire({
                 icon: 'error',
+                showConfirmButton: false,
                 title: 'Error',
                 text: 'Error during the file upload. Please try again later.',
                 buttonsStyling: false,
@@ -266,7 +270,7 @@ function AdminInterface() {
         setSelectionDimensions1({});
         setSelectionDimensions2({});
         setStartPoint(null);
-        setGroupName("");
+        // setGroupName("");
         setSchoolName("");
         setCurrentSelection(null);
         isDrawing.current = false;
@@ -290,7 +294,7 @@ function AdminInterface() {
             });
     
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response}`);
             }
             const data = await response.json();
             console.log(data);

@@ -12,7 +12,7 @@ function Login() {
 
     // Function to handle form submission
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent the default form submit action
+        event.preventDefault(); // Prevent the default form submit actionn
         // Check if credentials match
 
         console.log ("SEINDING REUEST")

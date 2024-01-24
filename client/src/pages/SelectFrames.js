@@ -18,7 +18,6 @@ function SelectFrames() {
             text: "Please wait while we process your request.",
             icon: "info",
             buttons: false, // No buttons, as this is a loading message
-            timer: 3000, // Optional: close alert automatically after 3000ms
         });
     
         fetch(process.env.REACT_APP_BACKEND + '/classify_plates', {
@@ -35,7 +34,7 @@ function SelectFrames() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    buttonStyling: false,
+                    showConfirmButton: false,
                     text: 'Video processed successfully!',
                 });
             }
@@ -47,8 +46,8 @@ function SelectFrames() {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                buttonStyling: false,
-                text: 'An error occurred while processing your request.',
+                showConfirmButton: false,
+                text: 'An error occurred while processing your request. Please try again later.',
             });
         });
     };
@@ -78,16 +77,21 @@ function SelectFrames() {
 
     const handleImageClick = (imageName) => {
         if (window.confirm(`Do you want to delete this image: ${imageName}?`)) {
-            fetch(process.env.REACT_APP_BACKEND + `/delete-image/${imageName}`, { method: 'DELETE' })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.message === "Image deleted") {
-                        // Remove the image from the state as well, to update the UI
-                        setImages(images.filter(image => image !== imageName));
-                        // alert(`Image ${imageName} has been deleted.`);
-                    }
-                })
-                .catch(error => console.error('Error deleting image:', error));
+            fetch("https://thebinproject.org/thebinproject-org-backend/delete-image", { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageName }) // Send imageName in the request body
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.message === "Image deleted") {
+                    // Remove the image from the state as well, to update the UI
+                    setImages(images.filter(image => image !== imageName));
+                }
+            })
+            .catch(error => console.error('Error deleting image:', error));
         }
     };
     
