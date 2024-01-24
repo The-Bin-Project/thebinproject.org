@@ -213,27 +213,19 @@ def check_and_convert_mp4():
 
 #write a funciton to delete all videos in the video_saved folder
 def deleteVideo():
+	
 	#delete video from s3 bucket
 
-
+    print("in deleete vid")
     bucket_name = os.environ.get("BUCKET_NAME")
     bucket = s3_resource.Bucket(bucket_name)
+    print("after buckets delete vid")
 
 # Iterate over all objects in the bucket and delete each one
     for obj in bucket.objects.all():
         obj.delete()
 
     print("All files deleted from the bucket.")
-    # bucket_name = os.environ.get("BUCKET_NAME")  # Replace with your bucket name
-
-    # # List objects within the bucket
-    # objects_to_delete = s3_client.list_objects(Bucket=bucket_name)
-
-    # # Delete the objects
-    # if 'Contents' in objects_to_delete:
-    #     for obj in objects_to_delete['Contents']:
-    #         s3_client.delete_object(Bucket=bucket_name, Key=obj['Key'])
-    # print("DONE DELEITNG")
 
     return 'All files deleted from bucket {}'.format(os.environ.get("BUCKET_NAME"))
 
