@@ -184,6 +184,8 @@ def deleteVideo():
 		except Exception as e:
 			print('Failed to delete %s. Reason: %s' % (file_path, e))
 def split_images_white(selectionDimensions, selectionDimensions2):
+    print ("CALLED split_images_white")
+
     cap = cv2.VideoCapture('./video_saved/vid.mp4')
     frame_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
     frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
@@ -192,9 +194,12 @@ def split_images_white(selectionDimensions, selectionDimensions2):
     # create plates_captured folder if it doesn't exist
     if not os.path.exists('plates_captured'):
         os.makedirs('plates_captured')
+        print ("MAKING plates_captured dir")
         
     subfolder_name = os.path.join('plates_captured', str(uuid.uuid4()))
     os.mkdir(subfolder_name)
+
+    print ("Creating subfolder")
 
     # Process the video frames
     frame_count = 0
@@ -218,21 +223,24 @@ def split_images_white(selectionDimensions, selectionDimensions2):
         # Threshold for white color
         _, threshold_frame = cv2.threshold(gray_frame, 240, 255, cv2.THRESH_BINARY)
 
+        print ("CHECKING np.any")
         # Check if there is any white color in the frame's first ROI
         if np.any(threshold_frame == 255):
+            print ("np.any returned True")
             # Crop to the second selected ROI and save
             roi_frame_save = frame[y3:y3 + h2, x3:x3 + w2]
             # add roi_frame_save to the subfolder created
             file_path = os.path.join(subfolder_name, f'frame_{frame_count}.jpg')
             cv2.imwrite(file_path, roi_frame_save)
             print(f"Saved frame {frame_count}")
+
         frame_count += 3
 
     CheckSimilarFrames(subfolder_name)
 
 def CheckSimilarFrames(folder_path):
-
     print("Checking for similar frames")
+    
     # folder_path = "plates_captured"
     saved_frames = sorted([f for f in os.listdir(folder_path) if f.startswith('frame_')])
     print(f"Found {len(saved_frames)} saved frames")
@@ -262,7 +270,7 @@ def CheckSimilarFrames(folder_path):
         ssi_index, _ = ssim(frame1, frame2, full=True)
 
         # Define a threshold for similarity
-        threshold = 0.55
+        threshold = 0.5
 
         # If the SSI is above the threshold, delete the second frame in the pair
         if ssi_index > threshold:
@@ -362,10 +370,13 @@ def generate_report():
     return jsonify({ 'status': 'SUCCESS', 'message': 'Successfully generated report', 'report': report })
     
 
-@app.route('/delete-image/<filename>', methods=['DELETE'])
-def delete_image(filename):
+@app.route('/delete-image', methods=['POST'])
+def delete_image():
     try:
-        image_path = os.path.join('plates_captured', filename)
+        data = request.json
+        filename = data['imageName']
+        print(filename)
+        image_path = os.path.join(filename)
         if os.path.exists(image_path):
             os.remove(image_path)
             return jsonify({'message': 'Image deleted'}), 200
