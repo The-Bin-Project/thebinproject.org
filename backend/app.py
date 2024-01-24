@@ -169,7 +169,7 @@ def video_upload():
         return jsonify({'message': 'ok'})
     except Exception as e:
         print(f"Error: {str(e)}")
-        return jsonify({'message': 'error'}), 500
+        return jsonify({'message': str(e)}), 500
 
 
 #write a funciton to delete all videos in the video_saved folder
