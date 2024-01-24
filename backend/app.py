@@ -2,11 +2,9 @@ from flask import Flask, request, jsonify, send_file
 import cv2
 import numpy as np
 import ffmpeg
-import io
 import boto3
 from pymongo import MongoClient
 import shutil
-import s3_client
 import tempfile
 from skimage.metrics import structural_similarity as ssim
 from werkzeug.exceptions import RequestEntityTooLarge
