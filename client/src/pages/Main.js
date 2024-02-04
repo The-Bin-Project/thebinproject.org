@@ -14,7 +14,6 @@ function Main() {
 			<Idea/>
 			<Current_Work/>
 			<Login/>
-			// <About/>
 		</div>
 	)
 }
