@@ -31,7 +31,7 @@ def analyze_image(images, question, is_url):
             request_content.append({ "type": "image_url", "image_url": { "url": image }})
 
     response = client.chat.completions.create(
-        model="gpt-4-vision-preview", 
+        model="gpt-4o", 
         messages=[
             {
                 "role": "user", 
@@ -44,13 +44,13 @@ def analyze_image(images, question, is_url):
     return response.choices[0].message.content
 
 if __name__ == "__main__": 
-    image_url_1 = "https://the-bin-project-plates.s3.ap-southeast-1.amazonaws.com/img.jpg"
-    image_url_2 = "https://the-bin-project-plates.s3.ap-southeast-1.amazonaws.com/frame_20124.jpg"
-    image_urls = [image_url_1, image_url_2]
+    # image_url_1 = "https://the-bin-project-plates.s3.ap-southeast-1.amazonaws.com/img.jpg"
+    # image_url_2 = "https://the-bin-project-plates.s3.ap-southeast-1.amazonaws.com/frame_20124.jpg"
+    # image_urls = [image_url_1, image_url_2]
 
-    # image_base64_1 = open_file("frame_4233.jpg")
-    # image_base64_2 = open_file("frame_7512.jpg")
-    # images_base64 = [image_base64_1, image_base64_2]
+    image_base64_1 = open_file("./images/frame_4233.jpg")
+    image_base64_2 = open_file("./images/frame_7512.jpg")
+    images_base64 = [image_base64_1, image_base64_2]
 
     images_base64 = open_images_base64("images")
     # print (images_base64)
@@ -58,11 +58,11 @@ if __name__ == "__main__":
     with open ('prompt.txt', 'r') as f:
         PROMPT = f.read()
 
-    # # result1 = analyze_image(image_urls, PROMPT, True)
+    # result1 = analyze_image(image_urls, PROMPT, True)
     result2 = analyze_image(images_base64, PROMPT, False)
 
-    # # print ("RESULT 1:")
-    # # print (result1)
-    # # print ()
+    # print ("RESULT 1:")
+    # print (result1)
+    # print ()
     print ("RESULT 2:")
     print (result2)

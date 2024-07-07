@@ -1,2 +1,9 @@
 client_old
 .DS_Store
+
+# files ending in .pyc
+*.pyc
+
+credentials.txt
+
+venv
