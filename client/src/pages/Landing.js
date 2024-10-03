@@ -11,7 +11,7 @@ function Landing() {
                 <div className={styles.container}>
                     <div className={styles.leftCol}>
                         <p className={styles.subHead}>
-                            A UWCSEA East Initiative
+                            A UWCSEA Initiative
                         </p>
                         <h1 className={styles.mainTitle}>Project Bin</h1>
                     </div>
