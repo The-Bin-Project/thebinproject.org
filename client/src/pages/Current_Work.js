@@ -6,7 +6,7 @@ function Current_Work() {
     const embedUrl1 = `https://drive.google.com/file/d/${fileId1}/preview`;
     const fileId2 = "1n6ify3FjifnUGnYj5uo5JGXC6vvOX9LR"
     const embedUrl2 = `https://drive.google.com/file/d/${fileId2}/preview`;
-    const googleSlidesEmbedLink = 'https://docs.google.com/presentation/d/e/2PACX-1vQUBVVjd5nGX3srmfit5iGJtDR782hhi2syd8z5S8m0znQNZNSrZcnYhdI3uraXRrdpcQKBoI1qAH5t/embed?start=true&loop=false&delayms=3000';
+    const reportEmbedLink = 'https://docs.google.com/document/d/1FdvLTA5Cht9FRU_ce3BwfQI7Yk8AtKBdZk9ClkUHHPc/edit?usp=sharing';
 
 
     return (
@@ -36,12 +36,12 @@ function Current_Work() {
                     </iframe>
                             {/* Google Slides iframe */}
                             <iframe
-                        src={googleSlidesEmbedLink}
+                        src={reportEmbedLink}
                         width="30%"
-                        className={styles.googleSlidesIframe}
+                        className={styles.reportIframe}
                         height="800px"
                         allowFullScreen
-                        title="Current Work Presentation"
+                        title="Current Work Report"
                     >
                         <p>Your browser does not support iframes.</p>
                     </iframe>
