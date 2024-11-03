@@ -26,5 +26,5 @@ Our team is currently focused on data collation and labeling to improve our mach
 - OpenAI API
 
 ## The Team 👥
-- Hanming Ye, Anika Sharma, Aditya Agrawal, Antoine Lee
-- Ilisha Gupta, Alex Cho, Aarav Sharma
+- 2023-24: Hanming Ye, Anika Sharma, Aditya Agrawal, Antoine Lee, Ilisha Gupta
+- 2024-25: Ilisha Gupta, Alex Cho, Aarav Sharma, Ameya Meattle
